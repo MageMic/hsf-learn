@@ -1,6 +1,7 @@
 package com.zju.ad.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.zju.ad.constant.CommonStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -35,7 +36,7 @@ public class AdUnit {
     @TableField(value = "unit_status", insertStrategy = FieldStrategy.NOT_NULL)
     private Byte unitStatus;
 
-    @ApiModelProperty(name = "positionType", value = "单元状态")
+    @ApiModelProperty(name = "positionType", value = "广告位类型", notes = "开屏，贴片，中贴...")
     @TableField(value = "position_type", insertStrategy = FieldStrategy.NOT_NULL)
     private Byte positionType;
 
@@ -50,4 +51,14 @@ public class AdUnit {
     @ApiModelProperty(name = "updateTime", value = "更新时间")
     @TableField(value = "update_Time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date updateTime;
+
+    public AdUnit(Long planId, String unitName, Byte positionType, Long budget) {
+        this.planId = planId;
+        this.unitName = unitName;
+        this.unitStatus = CommonStatus.VALID.getStatus();
+        this.positionType = positionType;
+        this.budget = budget;
+        this.createTime = new Date();
+        this.updateTime = this.createTime;
+    }
 }
