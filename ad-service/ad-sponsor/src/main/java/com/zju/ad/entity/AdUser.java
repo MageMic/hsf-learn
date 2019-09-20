@@ -1,6 +1,7 @@
 package com.zju.ad.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.zju.ad.constant.CommonStatus;
 import io.swagger.annotations.ApiModel;
@@ -21,27 +22,27 @@ public class AdUser {
     private Long id;
 
     @ApiModelProperty(name = "username", value = "用户名")
-    @TableId(value = "username")
+    @TableField(value = "username")
     @NotNull
     private String username;
 
     @ApiModelProperty(name = "token", value = "token")
-    @TableId(value = "token")
+    @TableField(value = "token")
     @NotNull
     private String token;
 
     @ApiModelProperty(name = "userStatus", value = "用户状态")
-    @TableId(value = "user_status")
+    @TableField(value = "user_status")
     @NotNull
     private Byte userStatus;
 
     @ApiModelProperty(name = "createTime", value = "创建时间")
-    @TableId(value = "create_time")
+    @TableField(value = "create_time")
     @NotNull
     private Date createTime;
 
     @ApiModelProperty(name = "updateTime", value = "更新时间")
-    @TableId(value = "update_Time")
+    @TableField(value = "update_Time")
     @NotNull
     private Date updateTime;
 
