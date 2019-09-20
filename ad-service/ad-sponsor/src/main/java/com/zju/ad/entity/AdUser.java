@@ -1,5 +1,6 @@
 package com.zju.ad.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -22,28 +23,23 @@ public class AdUser {
     private Long id;
 
     @ApiModelProperty(name = "username", value = "用户名")
-    @TableField(value = "username")
-    @NotNull
+    @TableField(value = "username", insertStrategy = FieldStrategy.NOT_NULL)
     private String username;
 
     @ApiModelProperty(name = "token", value = "token")
-    @TableField(value = "token")
-    @NotNull
+    @TableField(value = "token", insertStrategy = FieldStrategy.NOT_NULL)
     private String token;
 
     @ApiModelProperty(name = "userStatus", value = "用户状态")
-    @TableField(value = "user_status")
-    @NotNull
+    @TableField(value = "user_status", insertStrategy = FieldStrategy.NOT_NULL)
     private Byte userStatus;
 
     @ApiModelProperty(name = "createTime", value = "创建时间")
-    @TableField(value = "create_time")
-    @NotNull
+    @TableField(value = "create_time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date createTime;
 
     @ApiModelProperty(name = "updateTime", value = "更新时间")
-    @TableField(value = "update_Time")
-    @NotNull
+    @TableField(value = "update_Time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date updateTime;
 
     public AdUser(String username, String token) {

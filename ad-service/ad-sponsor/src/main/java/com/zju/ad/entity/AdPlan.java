@@ -1,5 +1,6 @@
 package com.zju.ad.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -26,38 +27,31 @@ public class AdPlan {
     private Long id;
 
     @ApiModelProperty(name = "userId", value = "用户id")
-    @TableField(value = "user_id")
-    @NotNull
+    @TableField(value = "user_id", insertStrategy = FieldStrategy.NOT_NULL)
     private Long userId;
 
     @ApiModelProperty(name = "planName", value = "计划名称")
-    @TableField(value = "plan_name")
-    @NotNull
+    @TableField(value = "plan_name", insertStrategy = FieldStrategy.NOT_NULL)
     private String planName;
 
     @ApiModelProperty(name = "planStatus", value = "计划状态")
-    @TableField(value = "plan_status")
-    @NotNull
+    @TableField(value = "plan_status", insertStrategy = FieldStrategy.NOT_NULL)
     private Byte planStatus;
 
     @ApiModelProperty(name = "startDate", value = "计划开始时间")
-    @TableField(value = "start_date")
-    @NotNull
+    @TableField(value = "start_date", insertStrategy = FieldStrategy.NOT_NULL)
     private Date startDate;
 
     @ApiModelProperty(name = "endDate", value = "计划结束时间")
-    @TableField(value = "end_date")
-    @NotNull
+    @TableField(value = "end_date", insertStrategy = FieldStrategy.NOT_NULL)
     private Date endDate;
 
     @ApiModelProperty(name = "createTime", value = "创建时间")
-    @TableField(value = "create_time")
-    @NotNull
+    @TableField(value = "create_time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date createTime;
 
     @ApiModelProperty(name = "updateTime", value = "更新时间")
-    @TableField(value = "update_Time")
-    @NotNull
+    @TableField(value = "update_Time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date updateTime;
 
     public AdPlan(Long userId, String planName, Date startDate, Date endDate) {
