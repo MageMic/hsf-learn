@@ -16,7 +16,7 @@ public class AdPlanGetRequest {
     @ApiModelProperty(name = "userId", value = "用户id")
     private Long userId;
 
-    @ApiModelProperty(name = "ids", value = "用户id列表")
+    @ApiModelProperty(name = "ids", value = "id列表")
     private List<Long> ids;
 
     public boolean validate() {
