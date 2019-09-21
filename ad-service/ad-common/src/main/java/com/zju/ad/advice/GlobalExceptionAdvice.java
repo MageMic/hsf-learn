@@ -1,7 +1,7 @@
 package com.zju.ad.advice;
 
 import com.zju.ad.exception.AdException;
-import com.zju.ad.vo.CommonResponse;
+import com.zju.ad.dto.CommonResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

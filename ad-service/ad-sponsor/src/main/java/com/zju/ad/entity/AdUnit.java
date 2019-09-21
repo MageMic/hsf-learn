@@ -17,7 +17,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName
+@TableName("ad_unit")
 public class AdUnit {
 
     @ApiModelProperty(name = "id", value = "主键")

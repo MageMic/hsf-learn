@@ -1,0 +1,86 @@
+package com.zju.ad.service;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zju.ad.constant.Constants;
+import com.zju.ad.dao.AdPlanMapper;
+import com.zju.ad.dao.AdUserMapper;
+import com.zju.ad.dto.AdPlanGetRequest;
+import com.zju.ad.dto.AdPlanRequest;
+import com.zju.ad.entity.AdPlan;
+import com.zju.ad.entity.AdUser;
+import com.zju.ad.exception.AdException;
+import com.zju.ad.utils.CommonUtils;
+import com.zju.ad.vo.AdPlanResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * @Author: zjumic
+ * @Date: created at 21:09 2019/9/21
+ */
+public class AdPlanService extends ServiceImpl<AdPlanMapper, AdPlan> {
+
+    @Autowired
+    private AdUserMapper userMapper;
+
+    /**
+     * 创建推广计划
+     * @param request
+     * @return
+     * @throws AdException
+     */
+    @Transactional
+    AdPlanResponse createAdPlan(AdPlanRequest request) throws AdException {
+        if (!request.createValidate()) {
+            throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
+        }
+        // 确保关联的user对象存在
+        AdUser adUser =  userMapper.selectById(request.getUserId());
+        if (adUser == null) {
+            throw new AdException(Constants.ErrorMsg.CANNOT_FIND_RECORD);
+        }
+        QueryWrapper<AdPlan> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(AdPlan::getUserId, request.getUserId()).eq(AdPlan::getPlanName, request.getPlanName());
+        AdPlan oldPlan = this.getOne(queryWrapper);
+        if (oldPlan != null) {
+            throw new AdException(Constants.ErrorMsg.SAME_NAME_PLAN_ERROR);
+        }
+        AdPlan newAdPlan = new AdPlan(request.getUserId(), request.getPlanName(),
+                CommonUtils.parseStringDate(request.getStartDate()), CommonUtils.parseStringDate(request.getEndDate()));
+        this.save(newAdPlan);
+        return new AdPlanResponse(newAdPlan.getId(), newAdPlan.getPlanName());
+    }
+
+    /**
+     * 获取推广计划
+     * @param getRequest
+     * @return
+     * @throws AdException
+     */
+    List<AdPlan> getAdPlanByIds(AdPlanGetRequest getRequest) throws AdException {
+        return null;
+    }
+
+    /**
+     * 更新推广计划
+     * @param request
+     * @return
+     * @throws AdException
+     */
+    AdPlanResponse updateAdPlan(AdPlanRequest request) throws AdException {
+        return null;
+    }
+
+    /**
+     * 删除推广计划
+     * @param request
+     * @throws AdException
+     */
+    void deleteAdPlan(AdPlanRequest request) throws AdException {
+
+    }
+}

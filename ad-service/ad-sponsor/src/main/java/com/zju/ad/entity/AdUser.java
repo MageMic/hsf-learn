@@ -1,9 +1,6 @@
 package com.zju.ad.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import com.zju.ad.constant.CommonStatus;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,6 +13,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 @ApiModel
 @Data
+@TableName(value = "ad_user")
 public class AdUser {
 
     @ApiModelProperty(name = "id", value = "主键")

@@ -1,135 +1,73 @@
 package com.zju.ad.entity;
 
+import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@EqualsAndHashCode(callSuper = false)
+@ApiModel
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName(value = "ad_creative")
 public class AdCreative {
+
+    @ApiModelProperty(name = "id", value = "主键")
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    @ApiModelProperty(name = "name", value = "创意名称")
+    @TableField(value = "name", insertStrategy = FieldStrategy.NOT_NULL)
     private String name;
 
+    @ApiModelProperty(name = "type", value = "组类型")
+    @TableField(value = "type", insertStrategy = FieldStrategy.NOT_NULL)
     private Byte type;
 
+    @ApiModelProperty(name = "materialType", value = "物料类型", notes = "比如图片可以是bmp、jpg等")
+    @TableField(value = "material_type", insertStrategy = FieldStrategy.NOT_NULL)
     private Byte materialType;
 
+    @ApiModelProperty(name = "height", value = "物料高度")
+    @TableField(value = "height", insertStrategy = FieldStrategy.NOT_NULL)
     private Integer height;
 
+    @ApiModelProperty(name = "width", value = "物料宽度")
+    @TableField(value = "width", insertStrategy = FieldStrategy.NOT_NULL)
     private Integer width;
 
+    @ApiModelProperty(name = "size", value = "物料大小")
+    @TableField(value = "size", insertStrategy = FieldStrategy.NOT_NULL)
     private Long size;
 
-    private Integer duration;
+    @ApiModelProperty(name = "duration", value = "持续时长", notes = "视频不为0")
+    @TableField(value = "duration", insertStrategy = FieldStrategy.NOT_NULL)
+    private Integer duration = 0;
 
+    @ApiModelProperty(name = "auditStatus", value = "审核状态")
+    @TableField(value = "audit_status", insertStrategy = FieldStrategy.NOT_NULL)
     private Byte auditStatus;
 
+    @ApiModelProperty(name = "userId", value = "用户id")
+    @TableField(value = "user_id", insertStrategy = FieldStrategy.NOT_NULL)
     private Long userId;
 
+    @ApiModelProperty(name = "url", value = "url")
+    @TableField(value = "url", insertStrategy = FieldStrategy.NOT_NULL)
     private String url;
 
+    @ApiModelProperty(name = "createTime", value = "创建时间")
+    @TableField(value = "create_time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date createTime;
 
+    @ApiModelProperty(name = "updateTime", value = "更新时间")
+    @TableField(value = "update_Time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date updateTime;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Byte getType() {
-        return type;
-    }
-
-    public void setType(Byte type) {
-        this.type = type;
-    }
-
-    public Byte getMaterialType() {
-        return materialType;
-    }
-
-    public void setMaterialType(Byte materialType) {
-        this.materialType = materialType;
-    }
-
-    public Integer getHeight() {
-        return height;
-    }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Long getSize() {
-        return size;
-    }
-
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public Byte getAuditStatus() {
-        return auditStatus;
-    }
-
-    public void setAuditStatus(Byte auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }
