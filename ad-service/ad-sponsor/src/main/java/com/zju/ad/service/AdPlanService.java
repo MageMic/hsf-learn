@@ -14,6 +14,7 @@ import com.zju.ad.exception.AdException;
 import com.zju.ad.utils.CommonUtils;
 import com.zju.ad.vo.AdPlanResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -24,6 +25,7 @@ import java.util.Optional;
  * @Author: zjumic
  * @Date: created at 21:09 2019/9/21
  */
+@Service
 public class AdPlanService extends ServiceImpl<AdPlanMapper, AdPlan> {
 
     @Autowired
