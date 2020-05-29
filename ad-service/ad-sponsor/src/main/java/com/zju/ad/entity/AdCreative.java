@@ -1,6 +1,7 @@
 package com.zju.ad.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -63,10 +64,12 @@ public class AdCreative {
     private String url;
 
     @ApiModelProperty(name = "createTime", value = "创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @TableField(value = "create_time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date createTime;
 
     @ApiModelProperty(name = "updateTime", value = "更新时间")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @TableField(value = "update_Time", insertStrategy = FieldStrategy.NOT_NULL)
     private Date updateTime;
 

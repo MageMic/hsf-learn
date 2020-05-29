@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreativeService extends ServiceImpl<AdCreativeMapper, AdCreative> {
 
-    CreativeResponse createCreative(CreativeRequest request) {
+    public CreativeResponse createCreative(CreativeRequest request) {
 
         AdCreative creative = request.convertToEntity();
         this.save(creative);

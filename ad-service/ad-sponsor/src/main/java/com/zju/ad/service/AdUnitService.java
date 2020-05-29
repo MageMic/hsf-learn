@@ -44,7 +44,7 @@ public class AdUnitService extends ServiceImpl<AdUnitMapper, AdUnit> {
     @Autowired
     private CreativeUnitMapper creativeUnitMapper;
 
-    AdUnitResponse createAdUnit(AdUnitRequest request) throws AdException {
+    public AdUnitResponse createAdUnit(AdUnitRequest request) throws AdException {
 
         if (!request.createValidate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
@@ -66,7 +66,7 @@ public class AdUnitService extends ServiceImpl<AdUnitMapper, AdUnit> {
         return new AdUnitResponse(newAdUnit.getPlanId(), newAdUnit.getUnitName());
     }
 
-    AdUnitKeywordResponse createUnitKeyword(AdUnitKeywordRequest request) throws AdException {
+    public AdUnitKeywordResponse createUnitKeyword(AdUnitKeywordRequest request) throws AdException {
 
         List<Long> unitIds = request.getUnitKeywords().stream().map(AdUnitKeywordRequest.UnitKeyword::getUnitId).collect(Collectors.toList());
         if (!isRelatedUnitExist(unitIds)) {
@@ -85,7 +85,7 @@ public class AdUnitService extends ServiceImpl<AdUnitMapper, AdUnit> {
         return new AdUnitKeywordResponse(ids);
     }
 
-    AdUnitItResponse createUnitIt(AdUnitItRequest request) throws AdException {
+    public AdUnitItResponse createUnitIt(AdUnitItRequest request) throws AdException {
 
         List<Long> unitIds = request.getUnitIts().stream().map(AdUnitItRequest.UnitIt::getUnitId).collect(Collectors.toList());
         if (!isRelatedUnitExist(unitIds)) {
@@ -103,7 +103,7 @@ public class AdUnitService extends ServiceImpl<AdUnitMapper, AdUnit> {
         return new AdUnitItResponse(ids);
     }
 
-    AdUnitDistrictResponse createUnitDistrict(AdUnitDistrictRequest request) throws AdException {
+    public AdUnitDistrictResponse createUnitDistrict(AdUnitDistrictRequest request) throws AdException {
 
         List<Long> unitIds = request.getUnitDistricts().stream().map(AdUnitDistrictRequest.UnitDistrict::getUnitId).collect(Collectors.toList());
         if (!isRelatedUnitExist(unitIds)) {
@@ -121,7 +121,7 @@ public class AdUnitService extends ServiceImpl<AdUnitMapper, AdUnit> {
         return new AdUnitDistrictResponse(ids);
     }
 
-    CreativeUnitResponse createCreativeUnit(CreativeUnitRequest request) throws AdException {
+    public CreativeUnitResponse createCreativeUnit(CreativeUnitRequest request) throws AdException {
 
         List<Long> unitIds = request.getUnitItems().stream().map(CreativeUnitRequest.CreativeUnitItem::getUnitId)
                 .collect(Collectors.toList());
@@ -155,7 +155,7 @@ public class AdUnitService extends ServiceImpl<AdUnitMapper, AdUnit> {
         return this.getBaseMapper().selectList(queryWrapper).size() == new HashSet<>(unitIds).size();
     }
 
-    public boolean isRelatedCreativeExist(List<Long> creativeIds) {
+    private boolean isRelatedCreativeExist(List<Long> creativeIds) {
 
         if (CollectionUtils.isEmpty(creativeIds)) {
             return false;

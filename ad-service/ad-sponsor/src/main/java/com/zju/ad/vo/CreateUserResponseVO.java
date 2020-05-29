@@ -1,5 +1,6 @@
 package com.zju.ad.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,8 +25,10 @@ public class CreateUserResponseVO {
     private String token;
 
     @ApiModelProperty(name = "createTime", value = "创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
     @ApiModelProperty(name = "updateTime", value = "更新时间")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
 }

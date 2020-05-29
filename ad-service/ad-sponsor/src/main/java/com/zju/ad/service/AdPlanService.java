@@ -30,6 +30,8 @@ public class AdPlanService extends ServiceImpl<AdPlanMapper, AdPlan> {
 
     @Autowired
     private AdUserMapper userMapper;
+    @Autowired
+    private AdPlanMapper adPlanMapper;
 
     /**
      * 创建推广计划
@@ -38,7 +40,7 @@ public class AdPlanService extends ServiceImpl<AdPlanMapper, AdPlan> {
      * @throws AdException
      */
     @Transactional
-    AdPlanResponse createAdPlan(AdPlanRequest request) throws AdException {
+    public AdPlanResponse createAdPlan(AdPlanRequest request) throws AdException {
 
         if (!request.createValidate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
@@ -66,7 +68,7 @@ public class AdPlanService extends ServiceImpl<AdPlanMapper, AdPlan> {
      * @return
      * @throws AdException
      */
-    List<AdPlan> getAdPlanByIds(AdPlanGetRequest getRequest) throws AdException {
+    public List<AdPlan> getAdPlanByIds(AdPlanGetRequest getRequest) throws AdException {
 
         if (!getRequest.validate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
@@ -85,7 +87,7 @@ public class AdPlanService extends ServiceImpl<AdPlanMapper, AdPlan> {
      * @throws AdException
      */
     @Transactional
-    AdPlanResponse updateAdPlan(AdPlanRequest request) throws AdException {
+    public AdPlanResponse updateAdPlan(AdPlanRequest request) throws AdException {
 
         if (!request.updateValidate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);
@@ -117,7 +119,7 @@ public class AdPlanService extends ServiceImpl<AdPlanMapper, AdPlan> {
      * @throws AdException
      */
     @Transactional
-    void deleteAdPlan(AdPlanRequest request) throws AdException {
+    public void deleteAdPlan(AdPlanRequest request) throws AdException {
 
         if (!request.deleteValidate()) {
             throw new AdException(Constants.ErrorMsg.REQUEST_PARAM_ERROR);

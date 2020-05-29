@@ -21,17 +21,17 @@ import org.springframework.validation.annotation.Validated;
 @Service
 @Slf4j
 public class UserService extends ServiceImpl<AdUserMapper, AdUser> {
-    CreateUserResponseVO createUser(CreateUserRequestDTO requestDTO) throws AdException {
+    public CreateUserResponseVO createUser(CreateUserRequestDTO requestDTO) throws AdException {
 
         AdUser oldUser = this.getOne(new QueryWrapper<AdUser>().eq("username", requestDTO.getUsername()));
         if (oldUser != null) {
             throw new AdException(Constants.ErrorMsg.SAME_NAME_ERROR);
         }
         AdUser newUser = new AdUser(requestDTO.getUsername(), CommonUtils.MD5(requestDTO.getUsername()));
-        this.save(newUser);
-
+        this.getBaseMapper().insert(newUser);
         CreateUserResponseVO responseVO = new CreateUserResponseVO();
         BeanUtils.copyProperties(newUser, responseVO);
+        responseVO.setUserId(newUser.getId());
 
         return responseVO;
     }
