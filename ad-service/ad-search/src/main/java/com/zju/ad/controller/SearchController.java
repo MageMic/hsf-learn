@@ -2,6 +2,7 @@ package com.zju.ad.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zju.ad.annotation.IgnoreResponseAdvice;
+import com.zju.ad.client.SponsorClient;
 import com.zju.ad.client.vo.AdPlan;
 import com.zju.ad.client.vo.AdPlanGetRequest;
 import com.zju.ad.dto.CommonResponse;
@@ -23,8 +24,20 @@ public class SearchController {
 
     private final RestTemplate restTemplate;
     @Autowired
+    private SponsorClient sponsorClient;
+
+    @Autowired
     public SearchController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
+    }
+
+    @IgnoreResponseAdvice
+    @PostMapping("/getAdPlans")
+    @ApiOperation(value = "获取adPlans")
+    public CommonResponse<List<AdPlan>> getAdPlans(@RequestBody AdPlanGetRequest request) {
+        log.info("ad-search: getAdPlans -> {}",
+                JSON.toJSONString(request));
+        return sponsorClient.getAdPlans(request);
     }
 
     @SuppressWarnings("all")
